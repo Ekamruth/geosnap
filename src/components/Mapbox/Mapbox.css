@@ -1,0 +1,19 @@
+#map{
+  width: 100%;
+  height: inherit;
+}
+
+.map_container{
+  display: flex;
+  padding: 0 2rem;
+  padding-bottom: 2rem;
+}
+
+.map_box{
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 1rem;
+  height: 500px;
+}

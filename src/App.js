@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Root from './components/Root/Root';
+import HomePage from './pages/HomePage/HomePage';
+import AboutPage from './pages/AboutPage/AboutPage'
+import CanvasPage from './pages/CanvasPage/CanvasPage'
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import {ListContext} from './components/Contexts/Contexts';
+import { useContext, useMemo, useState } from 'react';
 
 function App() {
+
+  const YourCaptures = [];
+  
+  const router = createBrowserRouter([
+    {path: "/", element:<Root/>, children:[
+      {path:"/", element:<HomePage/>},
+      {path:"/about", element:<AboutPage/>},
+      {path:"/canvas", element:<CanvasPage/>} 
+    ]}
+  ])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ListContext.Provider value={YourCaptures}>
+        <RouterProvider router={router}/>
+      </ListContext.Provider>
     </div>
   );
 }

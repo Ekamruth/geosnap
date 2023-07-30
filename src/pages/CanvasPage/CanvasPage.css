@@ -1,0 +1,54 @@
+.canvas_page{
+  margin-top: 4rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.canvas_container{
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+}
+
+.canvas_heading{
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.img_btn{
+  border: none;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  margin: 0 1rem;
+  padding: 0;
+  height: fit-content;
+}
+
+.texture_img_container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.canvas_shapes{
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.canvas_shapes>button{
+  border: none;
+  background-color: white;
+  padding: 6px 12px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+.canvas_shapes>button:hover{
+  cursor: pointer;
+  border: 1px solid lightblue;
+}
