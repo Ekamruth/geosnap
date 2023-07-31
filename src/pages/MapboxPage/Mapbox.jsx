@@ -44,7 +44,7 @@ const Mapbox = () => {
     map.addControl(new mapboxgl.NavigationControl());
     mapRef.current = map;
 
-    return () => map.remove();
+    // return () => map.remove();
 
   }, []);
 
