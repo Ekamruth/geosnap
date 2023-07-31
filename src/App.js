@@ -7,7 +7,6 @@ import CanvasPage from './pages/CanvasPage/CanvasPage'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import {ListContext} from './components/Contexts/Contexts';
-import { useContext, useMemo, useState } from 'react';
 import Mapbox from './pages/MapboxPage/Mapbox';
 
 function App() {

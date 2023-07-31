@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { saveAs } from 'file-saver'
 
-import MAPBOX_ACCESS_TOKEN from '../../constants/constants'
+// import MAPBOX_ACCESS_TOKEN from '../../constants/constants'
 import CaptureBox from '../../components/CaptureBox/CaptureBox';
 import DisplayCarousel from '../../components/DisplayCarousel/DisplayCarousel'
 import { ListContext } from '../../components/Contexts/Contexts';
@@ -29,7 +29,8 @@ const Mapbox = () => {
 
   useEffect(() => {
 
-    const TOKEN = MAPBOX_ACCESS_TOKEN;
+    const TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
+    // const TOKEN = MAPBOX_ACCESS_TOKEN;
     mapboxgl.accessToken = TOKEN;
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
