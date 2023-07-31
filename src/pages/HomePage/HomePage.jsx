@@ -17,11 +17,11 @@ const HomePage = () => {
       </div>
       <div className='homepage_btns'>
         <Link to="/mapbox">
-          <button className='btn getstarted_btn'>
+          <button className='btn getstarted_btn blue_btn'>
             Get Started
           </button></Link>
         <Link to="/about">
-          <button className='btn knowmore_btn'>
+          <button className='btn knowmore_btn black_btn'>
             Know More
           </button></Link>
       </div>

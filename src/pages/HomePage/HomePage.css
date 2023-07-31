@@ -26,18 +26,6 @@
   border-radius: 18px;
 }
 
-.knowmore_btn{
-  background-color: black;
-  color: white;
-  border: transparent;
-}
-/* background-color 0.35s, color 0.35s border 0.35s */
-
-.knowmore_btn:hover{
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-}
 
 .scale-in-center {
 	-webkit-animation: scale-in-center 0.75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;

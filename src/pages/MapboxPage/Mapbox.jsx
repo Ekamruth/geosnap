@@ -16,37 +16,34 @@ const Mapbox = () => {
   const mapRef = useRef(null)
   const [dataURL, setdataURL] = useState("");
   const [valueArr, setValueArr] = useState([])
-  // const [mapDidRender, setMapDidRender] = useState(false)
 
   const listContext = useContext(ListContext);
   useEffect(() => {
     console.log(listContext.YourCaptures)
-    if(listContext.YourCaptures){
+    if (listContext.YourCaptures) {
       if ((listContext.YourCaptures).length !== 0) {
         setValueArr(listContext.YourCaptures);
       }
-    }    
+    }
   }, [listContext.YourCaptures]);
 
   useEffect(() => {
-      // console.log('Mapbox is getting rendered')
-      const TOKEN = MAPBOX_ACCESS_TOKEN;
-      mapboxgl.accessToken = TOKEN;
-      const map = new mapboxgl.Map({
-        // container: 'map',
-        container: mapContainerRef.current,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [75, 25], // Default initial center
-        zoom: 3, // Default initial zoom level
-        attributionControl: false, // This will enable the attribution control
-        zoomControl: true, // This will enable the zoom control
-        preserveDrawingBuffer: true,
-      });
-      map.addControl(new mapboxgl.NavigationControl());
 
-      mapRef.current = map;
+    const TOKEN = MAPBOX_ACCESS_TOKEN;
+    mapboxgl.accessToken = TOKEN;
+    const map = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [75, 25], // Default initial center
+      zoom: 3, // Default initial zoom level
+      attributionControl: false, // This will disable the attribution control
+      zoomControl: true, // This will enable the zoom control
+      preserveDrawingBuffer: true,
+    });
+    map.addControl(new mapboxgl.NavigationControl());
+    mapRef.current = map;
 
-      return () => map.remove();
+    return () => map.remove();
 
   }, []);
 
@@ -54,7 +51,6 @@ const Mapbox = () => {
     const map = mapRef.current;
     if (map) {
       const dataURL = map.getCanvas().toDataURL('image/png');
-      // console.log(dataURL)
       setdataURL(dataURL)
     }
   }
@@ -62,10 +58,9 @@ const Mapbox = () => {
   const savetoListHandler = () => {
     console.log(valueArr)
     setValueArr(valueArr => [...valueArr, { dataURL }])
-    // console.log(listContext.YourCaptures)
     listContext.YourCaptures = [...valueArr, { dataURL }]
   }
-  
+
 
   const savetoDeviceHandler = () => {
     const map = mapRef.current;
@@ -81,12 +76,17 @@ const Mapbox = () => {
     setdataURL(null);
   }
 
+  const deleteListHandler = ()=>{
+    setValueArr([])
+    listContext.YourCaptures = []
+  } 
+
   return (
     <div className='mapbox_page'>
       <div className='mapbox_heading'><span className='emphasis_txt'>GeoSnap</span> - Mapbox</div>
       <div className='map_container'>
         <div className='map_box'>
-          <div ref={mapContainerRef} id='map' />
+          <div ref={mapContainerRef} id='map' className='map'/>
         </div>
         <CaptureBox
           dataURL={dataURL}
@@ -98,7 +98,14 @@ const Mapbox = () => {
       </div>
       {valueArr.length !== 0 ?
         <div className='display_captures'>
-          <div className='display_captures_heading'>Your captures</div>
+          <div className='display_captures_heading'>
+            Your captures
+            <span className='delete_captures_btn'>
+              <button className='btn black_btn' onClick={deleteListHandler}>
+                Delete Captures
+              </button>
+            </span>
+          </div>
           <DisplayCarousel valueArr={valueArr} />
         </div> : null}
     </div>

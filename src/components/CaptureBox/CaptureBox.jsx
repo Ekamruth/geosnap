@@ -13,7 +13,7 @@ const CaptureBox = (props) => {
     <div className='capture_box'>
       <div className='capture_btn_container'>
         <button onClick={props.captureMapImage}
-          className='btn'>
+          className='btn blue_btn '>
           <div className='capture_btn'>
             <span className='capture_btn_icon'><TbCapture /></span>
             Capture
@@ -28,15 +28,15 @@ const CaptureBox = (props) => {
       {props.dataURL ?
         <>
           <div>
-            <button className='btn actions_btn' onClick={savetoListHandler}>
+            <button className='btn actions_btn blue_btn' onClick={savetoListHandler}>
                 Save to list
             </button>
-            <button className='btn actions_btn' onClick={savetoDeviceHandler}>Save to device</button>
-            <button className='btn actions_btn' onClick={deleteCaptureHandler}>Delete</button>
+            <button className='btn actions_btn blue_btn' onClick={savetoDeviceHandler}>Save to device</button>
+            <button className='btn actions_btn blue_btn' onClick={deleteCaptureHandler}>Delete</button>
           </div>
           <div className='canvas_btn_container'>
             <Link to="/canvas">
-              <button className='btn canvas_btn'>
+              <button className='btn canvas_btn black_btn'>
                 <span className='canvas_btn_icon'><HiOutlinePresentationChartLine/></span>
                 <span className='canvas_btn_txt'>Canvas</span>
               </button>

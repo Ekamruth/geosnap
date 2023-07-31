@@ -1,24 +1,44 @@
-
+* {
+  box-sizing: border-box;
+}
 
 .emphasis_txt{
   color: #007bff ;
 }
 
 .btn{
-  border: transparent;
-  background-color: #007bff;
-  color: white;
   font-size: 16px;
   font-weight: 500;
   padding: 8px 18px;
   border-radius: 18px;
+}
+
+.blue_btn{
+  border: transparent;
+  background-color: #007bff;
+  color: white;
   transition: background-color 0.35s, color 0.35s;
   transition-timing-function: ease-in-out;
 }
 
-.btn:hover{
+.blue_btn:hover{
   cursor: pointer;
   background-color: white;
-  color: black;
+  color: #007bff;
   border: 1px solid #007bff;
+}
+
+.black_btn{
+  background-color: black;
+  color: white;
+  border: transparent;
+  transition: background-color 0.35s, color 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+.black_btn:hover{
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
 }

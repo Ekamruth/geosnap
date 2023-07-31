@@ -27,6 +27,7 @@ const CanvasPage = () => {
   const imageSelectHandler = (image_selected) => {
     setTextureImg(image_selected)
   }
+
   const listofImgs = (valueArr !== undefined ? (valueArr.map((img) => {
     // console.log(img.dataURL)
     return (
@@ -55,7 +56,7 @@ const CanvasPage = () => {
   const gotoMapbox = (<div className='gotomap_container'>
     You dont have any images in your captures. <br></br>Capture images of your choice from the map here:<br></br>
     <Link to="/mapbox">
-      <button className='btn gotomap_btn'>Go to Mapbox</button>
+      <button className='btn gotomap_btn blue_btn'>Go to Mapbox</button>
     </Link>
   </div>)
 
@@ -66,15 +67,15 @@ const CanvasPage = () => {
         <div className='canvas_left'>
           <BabylonScene textureImg={textureImg} shape={shape} />
           <div className='canvas_shapes'>
-            <button className='btn sphere_btn shapes_btn' onClick={() => { shapeChangeHandler('sphere')}}>
+            <button className='btn sphere_btn shapes_btn blue_btn' onClick={() => { shapeChangeHandler('sphere')}}>
               <span className='canvas_shapes_icon'><BsCircle/></span>
               Sphere
             </button>
-            <button className='btn shapes_btn' onClick={() => { shapeChangeHandler('cube')}}>
+            <button className='btn shapes_btn blue_btn' onClick={() => { shapeChangeHandler('cube')}}>
               <span className='canvas_shapes_icon'><BiCube/></span>
               Cube
             </button>
-            <button className='btn shapes_btn' onClick={() => { shapeChangeHandler('cuboid')}}>
+            <button className='btn shapes_btn blue_btn' onClick={() => { shapeChangeHandler('cuboid')}}>
               <span className='canvas_shapes_icon'><BiCuboid/></span>
               Cuboid
             </button>
@@ -92,9 +93,8 @@ const CanvasPage = () => {
                 </div>
                 {textureImg ? 
                 <div>
-                <button className='btn' onClick={deleteTextureHandler}>Remove Texture</button>
-              </div> : null }
-                
+                <button className='btn blue_btn' onClick={deleteTextureHandler}>Remove Texture</button>
+              </div> : null }      
               </>) : gotoMapbox
           }
         </div>
