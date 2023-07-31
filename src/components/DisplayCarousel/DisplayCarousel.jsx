@@ -6,7 +6,6 @@ import './DisplayCarousel.css'
 const DisplayCarousel = (props) => {
 
   const carousal_items = props.valueArr.map((item) => {
-    // console.log(item.dataURL) 
     return (
       <div key={item.dataURL.slice(10, 15)} className='mapbox_carousel_img'>
         <img

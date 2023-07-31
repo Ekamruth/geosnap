@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import Root from './components/Root/Root';
 import HomePage from './pages/HomePage/HomePage';
 import AboutPage from './pages/AboutPage/AboutPage'
