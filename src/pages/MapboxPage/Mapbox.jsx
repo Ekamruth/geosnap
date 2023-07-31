@@ -2,6 +2,7 @@ import './Mapbox.css'
 
 import React, { useEffect, useRef, useState, memo, useContext } from 'react';
 import mapboxgl from 'mapbox-gl';
+// import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { saveAs } from 'file-saver'
 
@@ -44,7 +45,7 @@ const Mapbox = () => {
     map.addControl(new mapboxgl.NavigationControl());
     mapRef.current = map;
 
-    // return () => map.remove();
+    return () => map.remove();
 
   }, []);
 
