@@ -1,19 +1,28 @@
-import React, { useContext, useState, memo } from 'react'
+import React, { useContext, useState, memo, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 import './CanvasPage.css'
 import { ListContext } from '../../components/Contexts/Contexts';
 import BabylonScene from '../../components/BabylonScene/BabylonScene'
 
 import Carousel from 'framer-motion-carousel'
+import {BsCircle} from 'react-icons/bs'
+import {BiCuboid, BiCube} from 'react-icons/bi'
 
 const CanvasPage = () => {
 
   const [textureImg, setTextureImg] = useState(null)
   const [shape, setShape] = useState('cuboid')
+  const [valueArr, setValueArr] = useState(undefined)
 
   const listContext = useContext(ListContext);
-  const valueArr = listContext.YourCaptures;
-  // console.log(valueArr)
+  useEffect(() => {
+    if(listContext.YourCaptures){
+      if ((listContext.YourCaptures).length !== 0) {
+        setValueArr(listContext.YourCaptures);
+      }
+    }    
+  }, [listContext.YourCaptures]);
 
   const imageSelectHandler = (image_selected) => {
     setTextureImg(image_selected)
@@ -35,28 +44,60 @@ const CanvasPage = () => {
   })) : null
   )
 
-  const shapeChangeHandler = (changedShape)=>{
+  const shapeChangeHandler = (changedShape) => {
     setShape(changedShape)
+  }
+
+  const deleteTextureHandler = ()=>{
+    setTextureImg(null)
   } 
+
+  const gotoMapbox = (<div className='gotomap_container'>
+    You dont have any images in your captures. <br></br>Capture images of your choice from the map here:<br></br>
+    <Link to="/mapbox">
+      <button className='btn gotomap_btn'>Go to Mapbox</button>
+    </Link>
+  </div>)
 
   return (
     <div className='canvas_page'>
-      <div className='canvas_heading'>GeoSnap canvas</div>
+      <div className='canvas_heading'><span className='emphasis_txt'>GeoSnap</span>canvas</div>
       <div className='canvas_container'>
         <div className='canvas_left'>
           <BabylonScene textureImg={textureImg} shape={shape} />
           <div className='canvas_shapes'>
-            <button onClick={()=>{shapeChangeHandler('sphere')}}>Sphere</button>
-            <button onClick={()=>{shapeChangeHandler('cube')}}>Cube</button>
-            <button onClick={()=>{shapeChangeHandler('cuboid')}}>Cuboid</button>
+            <button className='btn sphere_btn shapes_btn' onClick={() => { shapeChangeHandler('sphere')}}>
+              <span className='canvas_shapes_icon'><BsCircle/></span>
+              Sphere
+            </button>
+            <button className='btn shapes_btn' onClick={() => { shapeChangeHandler('cube')}}>
+              <span className='canvas_shapes_icon'><BiCube/></span>
+              Cube
+            </button>
+            <button className='btn shapes_btn' onClick={() => { shapeChangeHandler('cuboid')}}>
+              <span className='canvas_shapes_icon'><BiCuboid/></span>
+              Cuboid
+            </button>
           </div>
         </div>
-        {
-          valueArr !== undefined ? (
-            <Carousel>
-              {listofImgs}
-            </Carousel>) : null
-        }
+        <div className='canvas_right'>
+          {
+            valueArr !== undefined ?
+              (<>
+                <div className='canvas_right_prompt'>Click on an image to apply texture to the model</div>
+                <div className='carousel_container'>
+                  <Carousel interval={4000}>
+                    {listofImgs}
+                  </Carousel>
+                </div>
+                {textureImg ? 
+                <div>
+                <button className='btn' onClick={deleteTextureHandler}>Remove Texture</button>
+              </div> : null }
+                
+              </>) : gotoMapbox
+          }
+        </div>
       </div>
     </div>
   )

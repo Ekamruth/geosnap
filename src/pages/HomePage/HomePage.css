@@ -1,13 +1,70 @@
 .homepage{
   margin-top: 4rem;
+  padding-top: 2rem;
   text-align: center;
 }
 
-
 .welcome_txt{
   font-weight: 500;
-  font-size: 3rem;
+  font-size: 4rem;
   align-items: center;
   margin-bottom: 1rem;
 }
 
+.homepage_intro_txt{
+  margin-bottom: 0;
+}
+
+.homepage_btns{
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.getstarted_btn{
+  padding: 8px 18px;
+  border-radius: 18px;
+}
+
+.knowmore_btn{
+  background-color: black;
+  color: white;
+  border: transparent;
+}
+/* background-color 0.35s, color 0.35s border 0.35s */
+
+.knowmore_btn:hover{
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
+.scale-in-center {
+	-webkit-animation: scale-in-center 0.75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-center 0.75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}

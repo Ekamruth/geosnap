@@ -1,3 +1,8 @@
 .about_page{
-  margin-top: 4rem;
+  padding: 4rem;
+  
+}
+
+.about_page>h1{
+  text-align: center;
 }

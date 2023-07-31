@@ -2,26 +2,34 @@ import './Mapbox.css'
 
 import React, { useEffect, useRef, useState, memo, useContext } from 'react';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { saveAs } from 'file-saver'
 
 import MAPBOX_ACCESS_TOKEN from '../../constants/constants'
-import CaptureBox from '../CaptureBox/CaptureBox';
-import DisplayCarousel from '../DisplayCarousel/DisplayCarousel';
-import {ListContext} from '../Contexts/Contexts';
+import CaptureBox from '../../components/CaptureBox/CaptureBox';
+import DisplayCarousel from '../../components/DisplayCarousel/DisplayCarousel'
+import { ListContext } from '../../components/Contexts/Contexts';
 
 
 const Mapbox = () => {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null)
-  const isInitialRender = useRef(true)
   const [dataURL, setdataURL] = useState("");
   const [valueArr, setValueArr] = useState([])
   // const [mapDidRender, setMapDidRender] = useState(false)
 
   const listContext = useContext(ListContext);
+  useEffect(() => {
+    console.log(listContext.YourCaptures)
+    if(listContext.YourCaptures){
+      if ((listContext.YourCaptures).length !== 0) {
+        setValueArr(listContext.YourCaptures);
+      }
+    }    
+  }, [listContext.YourCaptures]);
 
   useEffect(() => {
-    console.log(isInitialRender.current)
+      // console.log('Mapbox is getting rendered')
       const TOKEN = MAPBOX_ACCESS_TOKEN;
       mapboxgl.accessToken = TOKEN;
       const map = new mapboxgl.Map({
@@ -34,11 +42,10 @@ const Mapbox = () => {
         zoomControl: true, // This will enable the zoom control
         preserveDrawingBuffer: true,
       });
+      map.addControl(new mapboxgl.NavigationControl());
 
       mapRef.current = map;
-      if (isInitialRender.current) {
-        isInitialRender.current = false
-      }
+
       return () => map.remove();
 
   }, []);
@@ -56,8 +63,9 @@ const Mapbox = () => {
     console.log(valueArr)
     setValueArr(valueArr => [...valueArr, { dataURL }])
     // console.log(listContext.YourCaptures)
+    listContext.YourCaptures = [...valueArr, { dataURL }]
   }
-  listContext.YourCaptures = valueArr;
+  
 
   const savetoDeviceHandler = () => {
     const map = mapRef.current;
@@ -74,7 +82,8 @@ const Mapbox = () => {
   }
 
   return (
-    <>
+    <div className='mapbox_page'>
+      <div className='mapbox_heading'><span className='emphasis_txt'>GeoSnap</span> - Mapbox</div>
       <div className='map_container'>
         <div className='map_box'>
           <div ref={mapContainerRef} id='map' />
@@ -89,10 +98,10 @@ const Mapbox = () => {
       </div>
       {valueArr.length !== 0 ?
         <div className='display_captures'>
-          <h3>Your captures</h3>
+          <div className='display_captures_heading'>Your captures</div>
           <DisplayCarousel valueArr={valueArr} />
         </div> : null}
-    </>
+    </div>
   )
 };
 

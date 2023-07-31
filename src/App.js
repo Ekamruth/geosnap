@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import {ListContext} from './components/Contexts/Contexts';
 import { useContext, useMemo, useState } from 'react';
+import Mapbox from './pages/MapboxPage/Mapbox';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
   const router = createBrowserRouter([
     {path: "/", element:<Root/>, children:[
       {path:"/", element:<HomePage/>},
+      {path:"/mapbox", element:<Mapbox/>},
       {path:"/about", element:<AboutPage/>},
       {path:"/canvas", element:<CanvasPage/>} 
     ]}

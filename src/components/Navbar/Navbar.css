@@ -8,8 +8,9 @@
   left: 0;
   right: 0;
   z-index: 10;
-  background-color: white;
+  background-color: black;
   border-bottom: 0.5px solid lightgrey;
+  opacity: 0.9;
 }
 
 .navbar>ul{
@@ -18,12 +19,16 @@
 
 .navbar>ul>li{
   display: inline;
-  margin: 0px 2rem;
 }
 
 .navbar>ul>li>a{
-  color: black;
+  color: white;
   text-decoration: none;
+  padding: 1rem 2rem;
+}
+
+.navbar>ul>li>a:hover{
+  background-color: rgb(30, 30, 30);
 }
 
 .nav_left{
@@ -44,5 +49,5 @@
 
 .nav_heading>a{
   text-decoration: none;
-  color: black;
+  color: white;
 }

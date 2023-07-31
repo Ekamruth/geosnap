@@ -1,0 +1,44 @@
+#map{
+  width: 100%;
+  height: inherit;
+}
+
+.mapbox_page{
+  margin-top: 4rem;
+  padding: 1rem 2rem;
+  padding-bottom: 2rem;
+}
+
+.mapbox_heading{
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.map_container{
+  display: flex;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.map_box{
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 1rem;
+  height: 500px;
+}
+
+.display_captures{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.display_captures_heading{
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
