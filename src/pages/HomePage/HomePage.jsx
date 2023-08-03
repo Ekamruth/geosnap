@@ -11,7 +11,7 @@ const HomePage = () => {
       <div className='welcome_txt'>
         Welcome to <span className='emphasis_txt'>GeoSnap</span>!
       </div>
-      <div>
+      <div className='homepage_intro'>
         <p className='homepage_intro_txt'>A cutting-edge application that combines the power of maps and 3D rendering<br></br> to provide a truly immersive and interactive experience.</p>
         <img src={globe} alt="" className='scale-in-center' />
       </div>

@@ -1,7 +1,9 @@
 .homepage{
   margin-top: 4rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 .welcome_txt{
@@ -9,6 +11,11 @@
   font-size: 4rem;
   align-items: center;
   margin-bottom: 1rem;
+  text-align: center;
+}
+
+.homepage_intro{
+  text-align: center;
 }
 
 .homepage_intro_txt{
@@ -19,11 +26,6 @@
   display: flex;
   gap: 2rem;
   justify-content: center;
-}
-
-.getstarted_btn{
-  padding: 8px 18px;
-  border-radius: 18px;
 }
 
 
@@ -56,3 +58,4 @@
     opacity: 1;
   }
 }
+

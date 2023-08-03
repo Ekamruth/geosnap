@@ -1,52 +1,82 @@
-.capture_box{
-  margin: 0;
+.capture_box {
+  margin: auto;
   width: 50%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.capture_box_inner {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
-.actions_btn{
+/* .actions_btn {
   margin-right: 1rem;
-}
+} */
 
-.canvas_btn{
-  padding: 10px 26px;
-  border-radius: 22px;
+.canvas_btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 1.5rem;
   display: flex;
   gap: 4px;
   align-items: center;
 }
 
-.capture_btn{
+.capture_btn {
   display: flex;
   gap: 2px;
   align-items: center;
 }
 
-.capture_btn_icon{
+.capture_btn_icon {
   padding-top: 2px;
 }
 
-.savetolist_btn{
+.captured_img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.captured_img>img {
+  width: 20rem;
+  height: 18rem;
+}
+
+.actions_btns_container{
+  display: flex;
+  gap: 1rem;
+}
+
+.savetolist_btn {
   display: flex;
   gap: 5px;
   align-items: center;
 }
 
-.savetolist_icon{
-  font-size: 14px;
-  padding-top: 3px;
-}
-
-.canvas_btn_icon{
+.canvas_btn_icon {
   padding-top: 2px;
 }
 
-.canvas_btn_container>a{
+.canvas_btn_container>a {
   text-decoration: none;
 }
 
 
+/* Media queries */
+@media only screen and  (max-width: 600px){
+  .capture_box{
+    width: 100%;
+  }
+}
+
+@media only screen and  (min-width: 600px) and (max-width: 800px){
+ 
+}

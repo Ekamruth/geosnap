@@ -2,8 +2,9 @@ import './Mapbox.css'
 
 import React, { useEffect, useRef, useState, memo, useContext } from 'react';
 import mapboxgl from 'mapbox-gl';
-// import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { saveAs } from 'file-saver'
 
 // import MAPBOX_ACCESS_TOKEN from '../../constants/constants'
@@ -20,7 +21,6 @@ const Mapbox = () => {
 
   const listContext = useContext(ListContext);
   useEffect(() => {
-    console.log(listContext.YourCaptures)
     if (listContext.YourCaptures) {
       if ((listContext.YourCaptures).length !== 0) {
         setValueArr(listContext.YourCaptures);
@@ -45,8 +45,16 @@ const Mapbox = () => {
     map.addControl(new mapboxgl.NavigationControl());
     mapRef.current = map;
 
-    return () => map.remove();
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl,
+      position: 'bottom-left',
+    });
 
+    map.addControl(geocoder);
+
+    return () => map.remove();
+    
   }, []);
 
   const captureMapImage = () => {
@@ -58,11 +66,9 @@ const Mapbox = () => {
   }
 
   const savetoListHandler = () => {
-    console.log(valueArr)
     setValueArr(valueArr => [...valueArr, { dataURL }])
     listContext.YourCaptures = [...valueArr, { dataURL }]
   }
-
 
   const savetoDeviceHandler = () => {
     const map = mapRef.current;
@@ -78,38 +84,40 @@ const Mapbox = () => {
     setdataURL(null);
   }
 
-  const deleteListHandler = ()=>{
+  const deleteListHandler = () => {
     setValueArr([])
     listContext.YourCaptures = []
-  } 
+  }
 
   return (
     <div className='mapbox_page'>
-      <div className='mapbox_heading'><span className='emphasis_txt'>GeoSnap</span> - Mapbox</div>
-      <div className='map_container'>
-        <div className='map_box'>
-          <div ref={mapContainerRef} id='map' className='map'/>
-        </div>
-        <CaptureBox
-          dataURL={dataURL}
-          captureMapImage={captureMapImage}
-          savetoListHandler={savetoListHandler}
-          savetoDeviceHandler={savetoDeviceHandler}
-          deleteCaptureHandler={deleteCaptureHandler}
-        />
-      </div>
-      {valueArr.length !== 0 ?
-        <div className='display_captures'>
-          <div className='display_captures_heading'>
-            Your captures
-            <span className='delete_captures_btn'>
-              <button className='btn black_btn' onClick={deleteListHandler}>
-                Delete Captures
-              </button>
-            </span>
+      <div className='mapbox_page_inner'>
+        <div className='mapbox_heading'><span className='emphasis_txt'>GeoSnap</span> - Mapbox</div>
+        <div className='map_container'>
+          <div className='map_box'>
+            <div ref={mapContainerRef} id='map' className='map' />
           </div>
-          <DisplayCarousel valueArr={valueArr} />
-        </div> : null}
+          <CaptureBox
+            dataURL={dataURL}
+            captureMapImage={captureMapImage}
+            savetoListHandler={savetoListHandler}
+            savetoDeviceHandler={savetoDeviceHandler}
+            deleteCaptureHandler={deleteCaptureHandler}
+          />
+        </div>
+        {valueArr.length !== 0 ?
+          <div className='display_captures'>
+            <div className='display_captures_heading'>
+              Your captures
+              <span className='delete_captures_btn'>
+                <button className='btn black_btn' onClick={deleteListHandler}>
+                  Delete Captures
+                </button>
+              </span>
+            </div>
+            <DisplayCarousel valueArr={valueArr} />
+          </div> : null}
+      </div>
     </div>
   )
 };

@@ -51,3 +51,14 @@
   text-decoration: none;
   color: white;
 }
+
+
+/* Media queries */
+@media only screen and (max-width: 500px){
+  .navbar>ul>li>a{
+    padding: 1rem 1rem;
+  }
+  .navbar>ul>:last-child{
+    display: none;
+}
+  }

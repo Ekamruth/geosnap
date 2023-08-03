@@ -1,13 +1,22 @@
 import React, { useEffect, useRef } from "react";
 import * as BABYLON from 'babylonjs'
 
+import './BabylonScene.css'
+
 const BabylonScene = (props) => {
-  // console.log(props.textureImg)
   const sceneRef = useRef(null);
   const appliedTexture = props.textureImg;
   const shape = props.shape;
 
+  const scene = useRef(null);
+  const cuboid = useRef(null);
+  const sphere = useRef(null);
+  const cube = useRef(null);
+  // const shapeMesh = useRef(null);
+
+
   useEffect(() => {
+    console.log("Babylon scene starting")
     const canvas = sceneRef.current;
     const engine = new BABYLON.Engine(canvas, true);
 
@@ -16,7 +25,7 @@ const BabylonScene = (props) => {
 
       scene.clearColor = new BABYLON.Color3(0.1, 0.1, 0.1)
       // const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 0, -14), scene);
-      const camera = new BABYLON.ArcRotateCamera('camera',0,0,8, new BABYLON.Vector3(0,3,0), scene)
+      const camera = new BABYLON.ArcRotateCamera('camera', 0, 0, 8, new BABYLON.Vector3(0, 3, 0), scene)
       camera.attachControl(canvas, true);
       camera.wheelPrecision = 50;
       camera.angularSensibilityX = 3000;
@@ -29,41 +38,34 @@ const BabylonScene = (props) => {
       const light3 = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0, 0, 10), scene);
       light3.intensity = 0.5;
 
-      if(shape === 'cuboid'){
-        const cuboid = BABYLON.MeshBuilder.CreateBox('cuboid', { size: 3, height: 6, width: 3 }, scene);
-        cuboid.rotation.x = 2;
-        cuboid.rotation.y = 3;
-
-        if (appliedTexture !== null) {
-          const material = new BABYLON.StandardMaterial('material', scene);
-          material.diffuseTexture = new BABYLON.Texture(appliedTexture, scene);
-          cuboid.material = material;
-        }
-      }
-      
-      if(shape === 'sphere'){
-        const sphere = BABYLON.MeshBuilder.CreateSphere('sphere',{segments: 32, diameter:4}, scene);
-        sphere.rotation.x = 2;
-        sphere.rotation.y = 3;
-        sphere.rotation.z = 2;
-
-        if (appliedTexture !== null) {
-          const material = new BABYLON.StandardMaterial('material', scene);
-          material.diffuseTexture = new BABYLON.Texture(appliedTexture, scene);
-          sphere.material = material;
-        }
+      if (shape === 'cuboid') {
+        cuboid.current = BABYLON.MeshBuilder.CreateBox('cuboid', { size: 3, height: 6, width: 3 }, scene);
+        cuboid.current.rotation.x = 2;
+        cuboid.current.rotation.y = 3;
+        // shapeMesh.current = BABYLON.MeshBuilder.CreateBox('cuboid', { size: 3, height: 6, width: 3 }, scene);
+        // shapeMesh.current.rotation.x = 2;
+        // shapeMesh.current.rotation.y = 3;
+        // console.log(shapeMesh.current.id)
       }
 
-      if(shape === 'cube'){
-        const cube = BABYLON.MeshBuilder.CreateBox('cube', {size:3}, scene);
-        cube.rotation.x=1;
-        cube.rotation.y=3;
+      if (shape === 'sphere') {
+        sphere.current = BABYLON.MeshBuilder.CreateSphere('sphere', { segments: 32, diameter: 4 }, scene);
+        sphere.current.rotation.x = 2;
+        sphere.current.rotation.y = 3;
+        sphere.current.rotation.z = 2;
+        // shapeMesh.current = BABYLON.MeshBuilder.CreateSphere('sphere', { segments: 32, diameter: 4 }, scene);
+        // shapeMesh.current.rotation.x = 2;
+        // shapeMesh.current.rotation.y = 3;
+        // shapeMesh.current.rotation.z = 2;
+      }
 
-        if (appliedTexture !== null) {
-          const material = new BABYLON.StandardMaterial('material', scene);
-          material.diffuseTexture = new BABYLON.Texture(appliedTexture, scene);
-          cube.material = material;
-        }
+      if (shape === 'cube') {
+        cube.current = BABYLON.MeshBuilder.CreateBox('cube', { size: 3 }, scene);
+        cube.current.rotation.x = 1;
+        cube.current.rotation.y = 3;
+        // shapeMesh.current = BABYLON.MeshBuilder.CreateBox('cube', { size: 3 }, scene);
+        // shapeMesh.current.rotation.x = 1;
+        // shapeMesh.current.rotation.y = 3;
       }
 
       // Create X, Y, and Z axes lines
@@ -87,11 +89,11 @@ const BabylonScene = (props) => {
       xAxis.color = new BABYLON.Color3(1, 0, 0); // Red X-axis
       yAxis.color = new BABYLON.Color3(0, 1, 0); // Green Y-axis
       zAxis.color = new BABYLON.Color3(0, 0, 1); // Blue Z-axis
-
+      console.log("Babylon scene return")
       return scene;
     }
 
-    const scene = createScene();
+    scene.current = createScene();
 
     const handleWheelEvent = (event) => {
       event.preventDefault();
@@ -100,19 +102,66 @@ const BabylonScene = (props) => {
     canvas.addEventListener('wheel', handleWheelEvent, { passive: false });
 
     engine.runRenderLoop(() => {
-      scene.render();
+      scene.current.render();
     })
 
-    // return ()=>{
-    //   scene.dispose();
-    //   engine.dispose();
-    // } 
-  }, [appliedTexture, shape])
+    return () => {
+      scene.current.dispose();
+      engine.dispose();
+    }
+  }, [shape])
+
+  useEffect(() => {
+    console.log("texture applied")
+    if (shape === "cuboid") {
+      if (appliedTexture !== null) {
+        const material = new BABYLON.StandardMaterial('material', scene.current);
+        material.diffuseTexture = new BABYLON.Texture(appliedTexture, scene.current);
+        cuboid.current.material = material;
+      }
+      else cuboid.current.material = null;
+    }
+
+    if (shape === "sphere") {
+      if (appliedTexture !== null) {
+      const material = new BABYLON.StandardMaterial('material', scene.current);
+      material.diffuseTexture = new BABYLON.Texture(appliedTexture, scene.current);
+      sphere.current.material = material;
+      }
+      else sphere.current.material = null;
+    }
+
+    if (shape === "cube") {
+      if (appliedTexture !== null) {
+      const material = new BABYLON.StandardMaterial('material', scene.current);
+      material.diffuseTexture = new BABYLON.Texture(appliedTexture, scene.current);
+      cube.current.material = material;
+      }
+      else cube.current.material = null;
+  }
+  }, [shape, appliedTexture])
+
+  // useEffect(()=>{
+  //   const applyMaterial = (mesh, texture, scene)=>{
+  //     if(appliedTexture !== null) {
+  //       const material = new BABYLON.StandardMaterial('material', scene);
+  //         material.diffuseTexture = new BABYLON.Texture(texture, scene);
+  //         mesh.material = material;
+  //     }
+  //     else mesh.material = null;
+  //   } 
+    
+  //   if (shapeMesh.current && shapeMesh.current.id) {
+  //     applyMaterial(shapeMesh.current, appliedTexture, scene.current);
+  //   }
+  // },[shapeMesh.current.id, appliedTexture])
 
   return (<canvas
-    width={650}
-    height={500}
     ref={sceneRef} />)
 }
 
 export default BabylonScene
+
+
+
+
