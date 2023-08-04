@@ -1,13 +1,17 @@
-.carousel{
+.texture_img_container{
   display: flex;
-  align-items: center;
   justify-content: space-around;
-  max-width: 60%;
-  margin-bottom: 2rem;
 }
 
-.mapbox_carousel_img{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.img_btn{
+  border: none;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  margin: 0 1rem;
+  padding: 0;
+  height: fit-content;
+}
+
+.carousel_container{
+  width: 100%;
 }

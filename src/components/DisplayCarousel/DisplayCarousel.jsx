@@ -5,28 +5,28 @@ import './DisplayCarousel.css'
 
 const DisplayCarousel = (props) => {
 
-  const carousal_items = props.valueArr.map((item) => {
+  const listofImgs = (props.valueArr.map((img) => {
     return (
-      <div key={item.dataURL.slice(10, 15)} className='mapbox_carousel_img'>
-        <img
-          src={item.dataURL}
-          width={350}
-          height={300}
-          alt="" />
+      <div key={img.dataURL.slice(100, 110)} className='texture_img_container'>
+        <button onClick={() => { props.imageSelectHandler(img.dataURL) }} className='img_btn'>
+          <img
+            src={img.dataURL}
+            width={300}
+            height={250}
+            alt=''
+          />
+        </button>
       </div>
     )
   })
+  )
 
   return (
-    <div className='carousel'>
-      {
-        carousal_items ?
-          (<Carousel autoPlay={false}>
-            {carousal_items}
-          </Carousel >) : null
-      }
+    <div className='carousel_container'>
+      <Carousel autoPlay={false}>
+        {listofImgs}
+      </Carousel>
     </div>
-
   )
 }
 

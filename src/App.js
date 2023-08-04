@@ -3,28 +3,30 @@ import React from 'react';
 import Root from './components/Root/Root';
 import HomePage from './pages/HomePage/HomePage';
 import AboutPage from './pages/AboutPage/AboutPage'
-import CanvasPage from './pages/CanvasPage/CanvasPage'
+
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import {ListContext} from './components/Contexts/Contexts';
+import ListContext from './components/Contexts/Contexts';
 import Mapbox from './pages/MapboxPage/Mapbox';
 
 function App() {
 
+  // Create an empty array to store the user's captures
   const YourCaptures = [];
   
+  // Create a router using the createBrowserRouter function
   const router = createBrowserRouter([
     {path: "/", element:<Root/>, children:[
       {path:"/", element:<HomePage/>},
       {path:"/mapbox", element:<Mapbox/>},
       {path:"/about", element:<AboutPage/>},
-      {path:"/canvas", element:<CanvasPage/>} 
     ]}
   ])
   return (
     <div className="App">
-      <ListContext.Provider value={YourCaptures}>
+      {/* Wrapping the app with the context provider to access it anywhere in the app*/}
+      <ListContext.Provider value={YourCaptures}>  
         <RouterProvider router={router}/>
       </ListContext.Provider>
     </div>

@@ -14,7 +14,7 @@
 }
 
 .blue_btn{
-  border: transparent;
+  border: 1px solid transparent;
   background-color: #007bff;
   color: white;
   transition: background-color 0.35s, color 0.35s;
@@ -31,7 +31,7 @@
 .black_btn{
   background-color: black;
   color: white;
-  border: transparent;
+  border: 1px solid transparent;
   transition: background-color 0.35s, color 0.35s;
   transition-timing-function: ease-in-out;
 }

@@ -1,0 +1,26 @@
+.canvas_shapes{
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.canvas_shapes>button:hover{
+  cursor: pointer;
+  border: 1px solid lightblue;
+}
+
+.canvas_shapes_icon{
+  font-size: 1.2rem;
+  padding-top: 2px;
+}
+
+.shapes_btn{
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 0.4rem 1rem;
+}
+
+.sphere_btn>span{
+  font-size: 1.1rem;
+}

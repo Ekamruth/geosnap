@@ -1,5 +1,5 @@
 .canvas_page{
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
   padding: 2rem;
   padding-bottom: 1rem;
   width: 100%;
@@ -15,6 +15,7 @@
   display: flex;
   justify-content: center;
   gap: 0.4rem;
+  margin-bottom: 1rem;
 }
 
 .canvas_container{
@@ -33,47 +34,6 @@
   flex-direction: column;
 }
 
-.canvas_shapes{
-  display: flex;
-  padding: 1rem;
-  justify-content: space-between;
-}
-
-.canvas_shapes>button:hover{
-  cursor: pointer;
-  border: 1px solid lightblue;
-}
-
-.canvas_shapes_icon{
-  font-size: 1.2rem;
-  padding-top: 2px;
-}
-
-.shapes_btn{
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  padding: 0.4rem 1rem;
-}
-
-.sphere_btn>span{
-  font-size: 1.1rem;
-}
-
-.img_btn{
-  border: none;
-  cursor: pointer;
-  border: 1px solid lightgray;
-  margin: 0 1rem;
-  padding: 0;
-  height: fit-content;
-}
-
-.texture_img_container{
-  display: flex;
-  justify-content: space-around;
-}
-
 .canvas_right{ 
  width: 50%;
  height: 100%;
@@ -87,7 +47,7 @@
 .canvas_right_inner{
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: center;
   width: 100%;
   padding-bottom: 4rem;

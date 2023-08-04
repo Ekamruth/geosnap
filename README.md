@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# GeoSnap - Explore, Capture, and Create with Maps and 3D Shapes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+GeoSnap is an advanced ReactJS application that allows users to explore and choose locations on a map, capture the visible region as an image, and apply it as a texture to 3D shapes using BabylonJS. The app aims to provide an immersive experience where users can unleash their creativity by transforming captured maps into captivating 3D scenes.
 
-In the project directory, you can run:
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Choose a location on the map using Google Maps or Mapbox.
+- Capture the visible region on the map as an image.
+- Apply the captured image as a texture to a 3D cuboid using BabylonJS.
+- Save captured images to a list for future reference.
+- Delete captured images from the list as needed.
+- Download captured images to the device for offline use.
+- Switch between different 3D shapes (cube, cuboid, and sphere).
+- View a carousel of captured map images and change the texture of the selected 3D shape.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Launch the GeoSnap app by navigating to `https://geosnap.netlify.app/` in your web browser.
 
-### `npm run build`
+2. Choose a location on the map using the provided map interface (Mapbox).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Click the "Capture" button to take a snapshot of the visible region on the map. The captured image will be displayed below.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Use the "Save to List" button to save the captured image to the list of captures for future reference.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. View the list of captured images and use the "Delete" button to remove any images you no longer need.
 
-### `npm run eject`
+6. Click the "Save to Device" button to download the selected captured image to your PC for offline use.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+7. Switch between different 3D shapes (cube, cuboid, and sphere) using the provided buttons in the BabylonJS scene.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+8. Interact with the carousel of captured map images. Click on an image to change the texture of the selected 3D shape to the corresponding map image.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Technologies Used
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ReactJS for the frontend user interface.
+- React-Router-Dom to route between different pages.
+- Mapbox for location selection and map display.
+- BabylonJS for rendering the 3D scenes and applying textures.
