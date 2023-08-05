@@ -111,6 +111,7 @@ const BabylonScene = (props) => {
     }
   }, [shape])
 
+  //Applying texture to the rendered shape 
   useEffect(() => {
     console.log("texture applied")
     if (shape === "cuboid") {

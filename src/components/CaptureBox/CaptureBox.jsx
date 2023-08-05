@@ -13,30 +13,29 @@ const CaptureBox = (props) => {
       <div className='capture_box_inner'>
         <div className='capture_btn_container'>
           <button onClick={props.captureMapImage}
-            className='btn black_btn '>
-            <div className='capture_btn'>
-              <span className='capture_btn_icon'><TbCapture /></span>
-              Capture
-            </div>
+            className='btn black_btn capture_btn'>
+            <span className='capture_btn_icon'><TbCapture /></span>
+            Capture
           </button>
         </div>
 
+        {/* Displaying the captured image and action buttons conditionally*/}
         {props.dataURL ?
           <>
-            <div className='captured_img'>
+            <div className='captured_img scale-in-center'>
               <img src={props.dataURL} alt="" />
             </div>
             <div className='actions_btns_container'>
               <div>
-                <button className='btn blue_btn' onClick={savetoListHandler}>
+                <button className='btn black_btn' onClick={savetoListHandler}>
                   Save to list
                 </button>
               </div>
               <div>
-                <button className='btn blue_btn' onClick={savetoDeviceHandler}>Save to device</button>
+                <button className='btn black_btn' onClick={savetoDeviceHandler}>Save to device</button>
               </div>
               <div>
-                <button className='btn blue_btn' onClick={deleteCaptureHandler}>Delete</button>
+                <button className='btn black_btn' onClick={deleteCaptureHandler}>Delete</button>
               </div>
             </div>
           </> : <div className='nocapture_txt'>

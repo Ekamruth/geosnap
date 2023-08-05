@@ -10,12 +10,13 @@ const DisplayCarousel = (props) => {
       <div key={img.dataURL.slice(100, 110)} className='texture_img_container'>
         <button onClick={() => { props.imageSelectHandler(img.dataURL) }} className='img_btn'>
           <img
+            className='carousel_img'
             src={img.dataURL}
-            width={300}
-            height={250}
             alt=''
           />
         </button>
+        <button className='delete_one_btn black_btn' onClick={() => { props.deleteOneHandler(img.dataURL) }}>Delete</button>
+
       </div>
     )
   })

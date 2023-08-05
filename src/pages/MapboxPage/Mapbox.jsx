@@ -6,11 +6,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { saveAs } from 'file-saver'
-import {Element} from 'react-scroll'
+import { Element } from 'react-scroll'
 
 import CaptureBox from '../../components/CaptureBox/CaptureBox';
 import Canvas from '../../components/Canvas/Canvas';
-import ListContext  from '../../components/Contexts/Contexts';
+import ListContext from '../../components/Contexts/Contexts';
 
 
 const Mapbox = () => {
@@ -25,6 +25,7 @@ const Mapbox = () => {
     if (listContext.YourCaptures) {
       if ((listContext.YourCaptures).length !== 0) {
         setValueArr(listContext.YourCaptures);
+        console.log(listContext.YourCaptures)
       }
     }
   }, [listContext.YourCaptures]);
@@ -55,7 +56,7 @@ const Mapbox = () => {
     map.addControl(geocoder);
 
     return () => map.remove();
-    
+
   }, []);
 
   //Capturing an image from the set map
@@ -83,14 +84,24 @@ const Mapbox = () => {
       })
     }
   }
-  
+
+  //Function to delete a single capture
   const deleteCaptureHandler = () => {
     setdataURL(null);
   }
 
+  //Function to delete all the captures from the list and context
   const deleteListHandler = () => {
     setValueArr([])
     listContext.YourCaptures = []
+  }
+
+  //Function to delete a single capture from the list and context 
+  const deleteOneHandler = (item) => {
+    setValueArr(valueArr =>
+      valueArr.filter((capture) => { return capture.dataURL !== item })
+    )
+    listContext.YourCaptures = valueArr.filter((capture) => { return capture.dataURL !== item })
   }
 
   return (
@@ -112,7 +123,11 @@ const Mapbox = () => {
           />
         </div>
       </div>
-      <Canvas valueArr={valueArr} deleteListHandler={deleteListHandler} />
+      <Canvas
+        valueArr={valueArr}
+        deleteListHandler={deleteListHandler}
+        deleteOneHandler={deleteOneHandler}
+      />
     </div>
   )
 };

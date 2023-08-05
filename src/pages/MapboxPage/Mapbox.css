@@ -3,17 +3,22 @@
 }
 
 .mapbox_page{
-  margin-top: 4rem;
-  padding: 1rem 2rem;
+  margin-top: 3rem;
+  padding: 2rem 2rem;
   padding-bottom: 2rem;
   width: 100%;
-  height: 100vh;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .mapbox_page_inner{
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 34rem;
+  border-bottom: 0.5px solid grey;
+  
 }
 
 .mapbox_heading{

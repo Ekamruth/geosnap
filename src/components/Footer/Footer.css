@@ -1,0 +1,40 @@
+.footer{
+  width: 100%;
+  height: fit-content;
+  background-color: black;
+  color: white;
+  position: static ;
+  bottom: 0; 
+  left: 0;
+  right: 0;
+  opacity: 0.9;
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 2rem;
+  line-height: 1.5rem;
+}
+
+.footer>ul{
+  list-style-type: none;
+  margin: 0;
+  /* text-align: center; */
+}
+
+.footer>ul>li{
+  display: inline;
+  padding: 0 1rem;
+  border-right: 0.5px solid white;
+}
+
+/* .footer>ul>li>img{
+  padding-top: 4px;
+} */
+
+.footer>ul>li>a{
+  text-decoration: none;
+  color: #007bff;
+}
+
+/* .footer>a:hover{
+  color: #007bff;
+} */

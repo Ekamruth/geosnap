@@ -15,14 +15,6 @@
   height: 100%;
 }
 
-.canvas_btn {
-  padding: 0.5rem 1.5rem;
-  border-radius: 1.5rem;
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
 .capture_btn {
   display: flex;
   gap: 2px;
